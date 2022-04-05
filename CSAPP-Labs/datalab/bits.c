@@ -205,7 +205,8 @@ int tmin(void) {
  *   Rating: 2
  */
 int fitsBits(int x, int n) {
-  return 2;
+  int biggest_number = ~(1 << (n - 1));
+  return !!!(~x & ~biggest_number);
 }
 /* 
  * divpwr2 - Compute x/(2^n), for 0 <= n <= 30
@@ -226,7 +227,7 @@ int divpwr2(int x, int n) {
  *   Rating: 2
  */
 int negate(int x) {
-  return 2;
+  return ~x;
 }
 /* 
  * isPositive - return 1 if x > 0, return 0 otherwise 
@@ -236,7 +237,8 @@ int negate(int x) {
  *   Rating: 3
  */
 int isPositive(int x) {
-  return 2;
+  int logical_shift_left = ((x >> 31) & 1);
+  return !!x & !logical_shift_left;
 }
 /* 
  * isLessOrEqual - if x <= y  then return 1, else return 0 
