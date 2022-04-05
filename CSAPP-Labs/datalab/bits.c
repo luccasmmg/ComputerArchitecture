@@ -217,7 +217,9 @@ int fitsBits(int x, int n) {
  *   Rating: 2
  */
 int divpwr2(int x, int n) {
-    return 2;
+  int x_sign_bit = ((x >> 31) & 1);
+  int number_biased = (((!x_sign_bit << 31) >> 31) & x) | (((x_sign_bit << 31) >> 31) & (x + (1 << n) - 1));
+  return number_biased >> n;
 }
 /* 
  * negate - return -x 
