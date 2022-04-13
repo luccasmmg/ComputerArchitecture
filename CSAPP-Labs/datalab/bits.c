@@ -250,7 +250,11 @@ int isPositive(int x) {
  *   Rating: 3
  */
 int isLessOrEqual(int x, int y) {
-  return 2;
+  int sign = (x ^ y);              
+  int diff = sign & x;             
+  int same = sign | (y + (~x + 1));
+  int result = !!((diff | ~same) & (1 << 31));
+  return result;
 }
 /*
  * ilog2 - return floor(log base 2 of x), where x > 0
